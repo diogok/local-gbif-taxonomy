@@ -1,0 +1,21 @@
+version: "2"
+services:
+  ipt:
+    image: diogok/ipt
+    ports:
+      - 80:80
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ipt123
+      MYSQL_DATABASE: ipt
+  loader:
+    image: diogok/php7
+    command: php load.php
+    working_dir: /opt/loader
+    volumes:
+      - .:/opt/loader
+
+
