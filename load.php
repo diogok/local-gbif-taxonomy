@@ -110,7 +110,7 @@ function go($core) {
     if(( $i % 500 ) == 0) {
       $db->commit();
       $db->beginTransaction();
-      echo $i."\n";
+      echo $table." ".$i."\n";
     }
   }
   $db->commit();
@@ -119,7 +119,7 @@ function go($core) {
 }
 
 $core = $xml->core;
-#go($core);
+go($core);
 foreach($xml->extension as $ext) {
   go($ext);
 }
