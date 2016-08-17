@@ -4,6 +4,8 @@ services:
     image: diogok/ipt
     ports:
       - 80:80
+    volumes:
+      - /var/data/ipt:/var/data/ipt
   mysql:
     image: mysql:5.7
     ports:
