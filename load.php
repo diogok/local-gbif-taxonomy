@@ -102,7 +102,7 @@ function go($core) {
   $db->beginTransaction();
   $i=0;
   while(($row = fgetcsv($csv,0,$sep,$enclose)) !== FALSE) {
-    while(count($row) != count($fields)) {
+    while(count($row) < count($fields)) {
       $row[] = "";
     }
     $a=$stmt->execute($row);
