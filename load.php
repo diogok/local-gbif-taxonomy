@@ -104,7 +104,11 @@ function go($core) {
 
   $db->beginTransaction();
   $i=0;
-  while(($row = fgetcsv($csv,0,$sep,$enclose)) !== FALSE) {
+  while(($row = fgetcsv($csv,0,"\t",$enclose)) !== FALSE) {
+    if($table=='taxon') {
+      unset($row[4]);
+      $row=array_values($row);
+    }
     while(count($row) < count($fields)) {
       $row[] = "";
     }
