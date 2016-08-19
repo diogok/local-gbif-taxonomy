@@ -24,6 +24,9 @@ function go($core) {
   ];
 
   $db = new PDO("mysql:host=mysql;dbname=ipt;port3306;charset=utf8",'root','ipt123',$opt);
+  if($db == null || $db == false) {
+    exit;
+  }
 
   $ignore = (int) $core["ignoreHeaderLines"];
   $enclose = (string) $core["fieldsEnclosedBy"];
@@ -104,6 +107,9 @@ function go($core) {
   while(($row = fgetcsv($csv,0,$sep,$enclose)) !== FALSE) {
     while(count($row) < count($fields)) {
       $row[] = "";
+    }
+    while(count($row) > count($fields)) {
+      unset($row[count($row) -1 ]);
     }
     $a=$stmt->execute($row);
     $i++;
